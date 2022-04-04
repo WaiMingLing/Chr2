@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Form sample</title>
+</head>
+
+<body>
+<h1>Sequence analysis</h1>
+<p>Enter your name and the sequence to be analyzed, then select the
+sequence type and types of analysis to be performed.</p>
+
+<h2>Enter your data...</h2>
+
+<!-- For Birkbeck you will need to change the action='....' to
+     http://http://student.cryst.bbk.ac.uk/cgi-bin/cgiwrap/USERNAME/form.cgi
+     replacing USERNAME as appropriate
+-->
+<form
+action='./form.cgi'
+method='post'>
+<p><b>Name:</b><br />
+<input name='name' type='text' size='49' /></p>
+
+<p><b>Sequence:</b><br />
+<textarea name='sequence' cols='40' rows='10'></textarea></p>
+
+<p><b>Sequence type:</b>
+<input name='seqtype' value='protein' type='radio' checked='checked' />Protein
+&nbsp;&nbsp;&nbsp;
+<input name='seqtype' value='dna'     type='radio' />DNA
+</p>
+
+<p><b>Analysis types:</b><br />
+<input name='antype' type='checkbox' value='hydrophobicity' />Hydrophobicity<br />
+<input name='antype' type='checkbox' value='accessibility' />Accessibility<br />
+<input name='antype' type='checkbox' value='secstruc' />Secondary Structure<br />
+</p>
+
+<p>
+<input type='submit' value='Submit' />&nbsp;&nbsp;
+<input type='reset'  value='Clear form' />
+</p>
+
+</form>
+
+
+</body>
+</html>

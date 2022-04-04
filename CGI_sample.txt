@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+
+import cgi;
+
+# Useful debugging output
+import cgitb
+cgitb.enable()  # Send errors to browser
+# cgitb.enable(display=0, logdir="/path/to/logdir") # log errors to a file
+
+# Print the HTML MIME-TYPE header
+print ("Content-Type: text/html\n")
+
+# Now grab the content of the form
+form = cgi.FieldStorage()
+
+name    = form["name"].value
+seq     = form["sequence"].value
+seqtype = form.getvalue("seqtype")  # Alternative way of doing the same thing
+antype  = form.getlist("antype")
+
+
+html = "<html>\n"
+html += "<head>\n"
+html += "<title>Sequence analysis results</title>\n"
+html += "</head>\n\n"
+html += "<body>\n"
+html += "<h1>Sequence analysis results</h1>\n"
+html += "<p>Data were submitted by: <b>" + name + "</b></p>\n"
+html += "<h2>Your sequence was:</h2>\n"
+html += "<pre>\n"
+html += seq
+html += "</pre>\n"
+html += "<p>This is a <b>" + seqtype + "</b> sequence.</p>\n"
+html += "<h2>Analysis</h2>\n"
+html += "<p>The following forms of analysis are to be performed:</p>\n"
+html += "<ul>"
+
+for a in antype:
+    if a == "hydrophobicity":
+        html += "<li>Hydrophobicity profile</li>\n"
+    if a == "accessibility":
+        html += "<li>Accessibility prediction</li>\n"
+    if a == "secstruc":
+        html += "<li>Secondary structure prediction</li>\n"
+
+html += "</ul>\n"
+html += "</body>\n"
+html += "</html>\n"
+
+print (html)
